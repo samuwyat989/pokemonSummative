@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 
@@ -18,7 +19,7 @@ namespace pokemonSummative
             InitializeComponent();
         }
 
-        bool leftDown, rightDown, upDown, downDown, move, checkBound = true, newGame = true;       
+        bool leftDown, rightDown, upDown, downDown, move, checkBound = true, newGame = true, storyEvent, grassEvent = true;       
         public static int screenX = 5, screenY = 5, tileSize, moveSpeed = 2;
         public static string direction, gameRegionName = "playerRoom", faceDirection = "Down";
 
@@ -52,11 +53,7 @@ namespace pokemonSummative
                 lineYVals.Add(screenY + tileSize * i);
             }
 
-            int playerX = lineXVals[4];
-            int playerY = lineYVals[4];
-            int playerSize = lineXVals[4] - lineXVals[3];
-
-            player = new Character(playerX, playerY, playerSize);
+            player = new Character(lineXVals[4], lineYVals[4], tileSize, 4, 4, "...", "Down");
 
             LoadRoom();
             Refresh();
@@ -131,155 +128,238 @@ namespace pokemonSummative
             }
             foreach(Character c in npc)
             {
-                e.Graphics.DrawRectangle(Pens.Yellow, lineXVals[c.xTileIndex], lineYVals[c.yTileIndex], tileSize, tileSize);
-
-                switch (c.faceDirection)
+                if (storyEvent && c.message == "Oak")
+                { }
+                else
                 {
-                    case "Right":
-                        e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + 5, lineYVals[c.yTileIndex] + tileSize / 2 - 3, 6, 6);
-                        break;
-                    case "Left":
-                        e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + tileSize - 11, lineYVals[c.yTileIndex] + c.size / 2 - 3, 6, 6);
-                        break;
-                    case "Down":
-                        e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + tileSize / 2 - 3, lineYVals[c.yTileIndex] + 5, 6, 6);
-                        break;
-                    case "Up":
-                        e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + tileSize / 2 - 3, lineYVals[c.yTileIndex] + tileSize - 11, 6, 6);
-                        break;
+                    e.Graphics.DrawRectangle(Pens.Yellow, lineXVals[c.xTileIndex], lineYVals[c.yTileIndex], tileSize, tileSize);
+                    //e.Graphics.DrawRectangle(Pens.Yellow, c.x, c.y, tileSize, tileSize);
+
+                    switch (c.faceDirection)
+                    {
+                        case "Right":
+                            e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + 5, lineYVals[c.yTileIndex] + tileSize / 2 - 3, 6, 6);
+                            break;
+                        case "Left":
+                            e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + tileSize - 11, lineYVals[c.yTileIndex] + tileSize / 2 - 3, 6, 6);
+                            break;
+                        case "Down":
+                            e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + tileSize / 2 - 3, lineYVals[c.yTileIndex] + 5, 6, 6);
+                            break;
+                        case "Up":
+                            e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + tileSize / 2 - 3, lineYVals[c.yTileIndex] + tileSize - 11, 6, 6);
+                            break;
+                    }
+                }
+            }
+
+            if(storyEvent)
+            {
+                if(grassEvent)
+                {
+                    e.Graphics.DrawRectangle(Pens.Yellow, npc[npc.Count-1].x, npc[npc.Count - 1].y, tileSize, tileSize);
+
+                    switch (npc[npc.Count - 1].faceDirection)
+                    {
+                        case "Right":
+                            e.Graphics.FillRectangle(Brushes.Orange, npc[npc.Count - 1].x + 5, npc[npc.Count - 1].y + tileSize / 2 - 3, 6, 6);
+                            break;
+                        case "Left":
+                            e.Graphics.FillRectangle(Brushes.Orange, npc[npc.Count - 1].x + tileSize - 11, npc[npc.Count - 1].y + tileSize / 2 - 3, 6, 6);
+                            break;
+                        case "Down":
+                            e.Graphics.FillRectangle(Brushes.Orange, npc[npc.Count - 1].x + tileSize / 2 - 3, npc[npc.Count - 1].y + 5, 6, 6);
+                            break;
+                        case "Up":
+                            e.Graphics.FillRectangle(Brushes.Orange, npc[npc.Count - 1].x + tileSize / 2 - 3, npc[npc.Count - 1].y + tileSize - 11, 6, 6);
+                            break;
+                    }
                 }
             }
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            move = true;
+            if (storyEvent)
+            {
+                if(grassEvent)
+                {
 
-            if (leftDown)
-            {
-                direction = "Left";
-                faceDirection = "Left";
-            }
-            else if (rightDown)
-            {
-                direction = "Right";
-                faceDirection = "Right";
-            }
-            else if (upDown)
-            {
-                direction = "Up";
-                faceDirection = "Up";
-            }
-            else if (downDown)
-            {
-                direction = "Down";
-                faceDirection = "Down";
+                }
+                else
+                {
+
+                }
             }
             else
             {
-                direction = "none";
-            }
+                move = true;
 
-            foreach (Boundary b in boundaries)
-            {
-                if (b.message != "Exit")
+                if (leftDown)
                 {
-                    if (b.Intersect(player, direction, checkBound))
+                    direction = "Left";
+                    faceDirection = "Left";
+                }
+                else if (rightDown)
+                {
+                    direction = "Right";
+                    faceDirection = "Right";
+                }
+                else if (upDown)
+                {
+                    direction = "Up";
+                    faceDirection = "Up";
+                }
+                else if (downDown)
+                {
+                    direction = "Down";
+                    faceDirection = "Down";
+                }
+                else
+                {
+                    direction = "none";
+                }
+
+                foreach (Boundary b in boundaries)
+                {
+                    if (b.message != "Exit")
+                    {
+                        if (b.Intersect(player, direction, checkBound))
+                        {
+                            move = false;
+                            break;
+                        }
+                        if (checkBound)
+                        {
+                            checkBound = false;
+                        }
+                    }
+                }
+                checkBound = true;
+
+                foreach (Character c in npc)
+                {
+                    if (c.IntersectNPC(player, direction))
                     {
                         move = false;
                         break;
                     }
-                    if (checkBound)
-                    {
-                        checkBound = false;
-                    }
                 }
-            }
-            checkBound = true;
 
-            foreach(Character c in npc)
-            {
-                if(c.IntersectNPC(player, direction))
+                if (move)
                 {
-                    move = false;
-                    break;
+                    player.Move(direction, moveSpeed);
+                    UpdateCharacters();
+                    UpdateBoundaries();
                 }
-            }
-
-            if (move)
-            {
-                player.Move(direction, moveSpeed);
-                UpdateCharacters();
-                UpdateBoundaries();
-            }
-            if (player.CheckExit(boundaries))
-            {
-                if (gameRegionName == "playerRoom" && faceDirection == "Left" ||
-                    gameRegionName == "playerRoom" && faceDirection == "Down")
+                if (player.CheckExit(boundaries))
                 {
-                    gameRegionName = "playerHouse";
-                    faceDirection = "Up";
-                    areaTrackList.Add("playerHouse");
-                    LoadRoom();
-                }
-                else if (gameRegionName == "playerHouse")
-                {
-                    if (player.x == lineXVals[7] && faceDirection == "Down" ||
-                        player.x == lineXVals[7] && faceDirection == "Left")
+                    if (gameRegionName == "playerRoom" && faceDirection == "Left" ||
+                        gameRegionName == "playerRoom" && faceDirection == "Down")
                     {
-                        gameRegionName = "playerRoom";
+                        gameRegionName = "playerHouse";
                         faceDirection = "Up";
-                        areaTrackList.Add("playerRoom");
+                        areaTrackList.Add("playerHouse");
                         LoadRoom();
                     }
-                    else if (player.x != lineXVals[7] && faceDirection == "Up")
+                    else if (gameRegionName == "playerHouse")
+                    {
+                        if (player.x == lineXVals[7] && faceDirection == "Down" ||
+                            player.x == lineXVals[7] && faceDirection == "Left")
+                        {
+                            gameRegionName = "playerRoom";
+                            faceDirection = "Up";
+                            areaTrackList.Add("playerRoom");
+                            LoadRoom();
+                        }
+                        else if (player.x != lineXVals[7] && faceDirection == "Up")
+                        {
+                            gameRegionName = "Outside";
+                            faceDirection = "Up";
+                            areaTrackList.Add("Outside");
+                            LoadRoom();
+                        }
+                    }
+                    else if (gameRegionName == "Outside")
+                    {
+                        if (player.x == lineXVals[4] && faceDirection == "Down")
+                        {
+                            gameRegionName = "playerHouse";
+                            faceDirection = "Down";
+                            areaTrackList.Add("playerHouse");
+                        }
+                        else if (player.x == lineXVals[11])
+                        {
+                            gameRegionName = "Lab";
+                            faceDirection = "Down";
+                            areaTrackList.Add("Lab");
+                        }
+                        else if (player.x == lineXVals[12])
+                        {
+                            gameRegionName = "rivalHouse";
+                            faceDirection = "Down";
+                            areaTrackList.Add("rivalHouse");
+                        }
+                        else
+                        {
+                            npc.Add(new Character(lineXVals[7], lineYVals[4], tileSize, 7, 4, "Oak", "Right"));
+                            npc[npc.Count - 1].faceDirection = "Down";
+
+                            storyEvent = true;
+                            for (int i = 0; i < tileSize*5/moveSpeed; i++)
+                            {
+                                if (i < tileSize/moveSpeed)
+                                {
+                                    npc[npc.Count - 1].y -= moveSpeed;
+                                }
+                                else if(i>= tileSize / moveSpeed && i< tileSize / moveSpeed * 2)
+                                {
+                                    npc[npc.Count - 1].x += moveSpeed;
+                                    npc[npc.Count - 1].faceDirection = "Left";
+                                }
+                                else if (i >= tileSize / moveSpeed * 2 && i < tileSize / moveSpeed * 3)
+                                {
+                                    npc[npc.Count - 1].y -= moveSpeed;
+                                    npc[npc.Count - 1].faceDirection = "Down";
+                                }
+                                else if (i >= tileSize / moveSpeed * 3 && i < tileSize / moveSpeed * 4)
+                                {
+                                    npc[npc.Count - 1].x += moveSpeed;
+                                    npc[npc.Count - 1].faceDirection = "Left";
+                                }
+                                else if (i >= tileSize / moveSpeed * 4 )
+                                {
+                                    npc[npc.Count - 1].y -= moveSpeed;
+                                    npc[npc.Count - 1].faceDirection = "Down";
+                                }
+                                Refresh();
+                                Thread.Sleep(gameTimer.Interval);
+                            }
+                            //storyEvent = false;
+                            gameTimer.Stop();
+                            // Refresh();
+                        }
+                        //LoadRoom();
+                    }
+                    else if (gameRegionName == "rivalHouse" && faceDirection == "Up")
+                    {
+                        gameRegionName = "Outside";
+                        faceDirection = "Up";
+                        areaTrackList.Add("Ouside");
+                        LoadRoom();
+                    }
+                    else if (gameRegionName == "Lab" && faceDirection == "Up")
                     {
                         gameRegionName = "Outside";
                         faceDirection = "Up";
                         areaTrackList.Add("Outside");
+
                         LoadRoom();
                     }
                 }
-                else if (gameRegionName == "Outside")
-                {
-                    if (player.x == lineXVals[4] && faceDirection == "Down")
-                    {
-                        gameRegionName = "playerHouse";
-                        faceDirection = "Down";
-                        areaTrackList.Add("playerHouse");
-                    }
-                    else if (player.x == lineXVals[11])
-                    {
-                        gameRegionName = "Lab";
-                        faceDirection = "Down";
-                        areaTrackList.Add("Lab");
-                    }
-                    else if (player.x == lineXVals[12])
-                    {
-                        gameRegionName = "rivalHouse";
-                        faceDirection = "Down";
-                        areaTrackList.Add("rivalHouse");
-                    }
-                    LoadRoom();
-                }
-                else if (gameRegionName == "rivalHouse" && faceDirection == "Up")
-                {
-                    gameRegionName = "Outside";
-                    faceDirection = "Up";
-                    areaTrackList.Add("Ouside");
-                    LoadRoom();
-                }
-                else if (gameRegionName == "Lab" && faceDirection == "Up")
-                {
-                    gameRegionName = "Outside";
-                    faceDirection = "Up";
-                    areaTrackList.Add("Outside");
 
-                    LoadRoom();
-                }
+                Refresh();
             }
-           
-            Refresh();
         }
      
         public void UpdateBoundaries()
@@ -383,11 +463,8 @@ namespace pokemonSummative
                                 lineYVals.Add(screenY + tileSize * i);
                         }
 
-                        npc.Add(new Character(lineXVals[5], lineYVals[4], tileSize));
-                        npc[0].xTileIndex = 5;
-                        npc[0].yTileIndex = 4;
-                        npc[0].faceDirection = "Right";
-                       //npc[0].message = ""
+                        npc.Add(new Character(lineXVals[5], lineYVals[4], tileSize, 5, 4,
+                            "MOM: Right. All boys leave home some day. It said so on TV. PROF.OAK, next door, is looking for you.", "Right"));
 
                        Refresh();
                         break;
@@ -416,6 +493,9 @@ namespace pokemonSummative
                             if (i != 10)
                                 lineYVals.Add(screenY + tileSize * i);
                         }
+
+                        npc.Add(new Character(lineXVals[2], lineYVals[3], tileSize, 2, 3,
+                            "Hi " + Form1.playerName + "! " + Form1.rivalName + " is out at Grandpa's lab.", "Left"));
 
                         Refresh();
                         break;
@@ -482,6 +562,13 @@ namespace pokemonSummative
                         {
                             lineYVals.Add(screenY + tileSize * i);
                         }
+
+                        npc.Add(new Character(lineXVals[10], lineYVals[14], tileSize, 10, 14, //Towns folk
+                           "Technology is incredible! You can now store and recall items and POKéMON as data via PC!", "Up"));
+
+                        npc.Add(new Character(lineXVals[2], lineYVals[7], tileSize, 2, 7, //Towns folk
+                           "I'm raising POKéMON too! When they get strong, they can protect me!", "Up"));
+
                         Refresh();
 
                         for(int i = 0; i < tileSize; i++)
@@ -495,10 +582,10 @@ namespace pokemonSummative
                         boundaries.Add(new Boundary(0, 0, 10, 12, "b"));//Boarder
                         boundaries.Add(new Boundary(0, 0, 10, 1, "b"));//wall
                         boundaries.Add(new Boundary(0, 1, 4, 1, "b"));//tables
-                        boundaries.Add(new Boundary(6, 1, 4, 1, "b"));//books
-                        boundaries.Add(new Boundary(6, 3, 3, 1, "b"));//table
-                        boundaries.Add(new Boundary(0, 6, 4, 2, "b"));//books
-                        boundaries.Add(new Boundary(6, 6, 4, 2, "b"));//wall
+                        boundaries.Add(new Boundary(6, 1, 4, 1, "Crammed full of POKéMON books!"));//books
+                        boundaries.Add(new Boundary(6, 3, 3, 1, "Those are POKé BALLs. They contain POKéMON!"));//table of pokemon
+                        boundaries.Add(new Boundary(0, 6, 4, 2, "Crammed full of POKéMON books!"));//books
+                        boundaries.Add(new Boundary(6, 6, 4, 2, "Crammed full of POKéMON books!"));//books
 
                         boundaries.Add(new Boundary(4, 11, 2, 1, "Exit"));//exit
 
@@ -518,8 +605,19 @@ namespace pokemonSummative
                             lineYVals.Add(screenY + tileSize * i);
                         }
 
-                        Refresh();
+                        npc.Add(new Character(lineXVals[4], lineYVals[3], tileSize, 4, 3,
+                            Form1.rivalName + ": Yo " + Form1.playerName + "! Gramps isn't around!", "Up"));//Blue
 
+                        npc.Add(new Character(lineXVals[8], lineYVals[10], tileSize, 8, 10, //male AIDE
+                           "I study POKéMON as PROF.OAK's AIDE.", "Up"));
+
+                        npc.Add(new Character(lineXVals[2], lineYVals[10], tileSize, 2, 10, //male AIDE
+                           "I study POKéMON as PROF.OAK's AIDE.", "Up"));
+
+                        npc.Add(new Character(lineXVals[1], lineYVals[9], tileSize, 1, 9, //female AIDE
+                           "PROF.OAK is the authority on POKéMON! Many POKéMON trainers hold him in high regard!", "Up"));
+
+                        Refresh();
                         break;
                 }
             }           

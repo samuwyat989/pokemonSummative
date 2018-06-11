@@ -14,11 +14,15 @@ namespace pokemonSummative
         int imageIndex;
         public string message, faceDirection;
 
-        public Character(int _x, int _y, int _size)
+        public Character(int _x, int _y, int _size, int _xTile, int _yTile, string _message, string _fc)
         {
             x = _x;
             y = _y;
             size = _size;
+            xTileIndex = _xTile;
+            yTileIndex = _yTile;
+            message = _message;
+            faceDirection = _fc;
         }
 
         public void Move(string _direction, int _moveSpeed)
