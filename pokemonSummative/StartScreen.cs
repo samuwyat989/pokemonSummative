@@ -325,6 +325,7 @@ namespace pokemonSummative
                         f.Controls.Remove(this);
                         GameScreen gs = new GameScreen();
                         f.Controls.Add(gs);
+                        f.Height -= 43;
                     }
                     else if (Form1.messageIndex == 4)
                     {

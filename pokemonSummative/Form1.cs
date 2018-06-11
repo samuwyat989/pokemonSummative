@@ -20,7 +20,7 @@ namespace pokemonSummative
         }
 
         public static List<MiniGamePlayer> top5Players = new List<MiniGamePlayer>();
-        public static string playerName, rivalName;
+        public static string playerName = "RED", rivalName = "BLUE";
         public static bool top5Name, gameName, rName, pokemonName;
         public static int messageIndex = 0;
 

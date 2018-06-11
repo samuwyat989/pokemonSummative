@@ -11,17 +11,13 @@ namespace pokemonSummative
         public int x, y, width, height, xTileIndex, yTileIndex, tileWidth, tileHeight;
         public string message;
 
-        public Boundary(int _xTileIndex, int _yTileIndex, int _tileWidth, int _tileHeight)//int _x, int _y, int _width, int _height)
+        public Boundary(int _xTileIndex, int _yTileIndex, int _tileWidth, int _tileHeight, string _message)//int _x, int _y, int _width, int _height)
         {
             xTileIndex = _xTileIndex; 
             yTileIndex = _yTileIndex;
             tileWidth = _tileWidth;
             tileHeight = _tileHeight;
-
-            //x = _x;
-            //y = _y;
-            //width = _width;
-            //height = _height;
+            message = _message;
         }
 
         public void Move(string _direction, int _moveSpeed)
@@ -50,30 +46,34 @@ namespace pokemonSummative
 
             switch (_direction)
             {
-                case "Right":
-                    if (_player.x == GameScreen.lineXVals[xTileIndex] + GameScreen.tileSize*tileWidth)
-                        //bound
+                case "Right"://left player collision
+                    if (_player.x == GameScreen.lineXVals[xTileIndex] + GameScreen.tileSize*tileWidth &&
+                        _player.y >= GameScreen.lineYVals[yTileIndex] && _player.y < GameScreen.lineYVals[yTileIndex + tileHeight]
+                        || bound && _player.x == GameScreen.lineXVals[0]) //bound
                     {
                         edge = true;
                     }
                     break;
-                case "Left":
-                    if(_player.x + _player.size == GameScreen.lineXVals[xTileIndex] && _player.y == GameScreen.lineYVals[yTileIndex])
-                        //|| bound && _player.x + _player.size == GameScreen.lineXVals[10])
+                case "Left"://right player collision
+                    if(_player.x + _player.size == GameScreen.lineXVals[xTileIndex] &&
+                       _player.y >= GameScreen.lineYVals[yTileIndex] && _player.y < GameScreen.lineYVals[yTileIndex + tileHeight]
+                       || bound && _player.x + _player.size == GameScreen.lineXVals[GameScreen.gameRegions[GameScreen.gameRegionName].Width])
                     {
                         edge = true;
                     }
                     break;
-                case "Up":
-                    if (_player.y + _player.size == GameScreen.lineYVals[yTileIndex] && _player.x == GameScreen.lineXVals[xTileIndex])
-                        //bound
+                case "Up"://bottom player collision
+                    if (_player.y + _player.size == GameScreen.lineYVals[yTileIndex] &&
+                        _player.x >= GameScreen.lineXVals[xTileIndex] && _player.x < GameScreen.lineXVals[xTileIndex + tileWidth]
+                        || bound && _player.y + _player.size == GameScreen.lineYVals[GameScreen.gameRegions[GameScreen.gameRegionName].Height])
                     {
                         edge = true;
                     }
                     break;
-                case "Down":
-                    if (_player.y == GameScreen.lineYVals[yTileIndex] + GameScreen.tileSize * tileHeight)
-                        //bound
+                case "Down"://top player collision
+                    if (_player.y == GameScreen.lineYVals[yTileIndex] + GameScreen.tileSize * tileHeight &&
+                        _player.x >= GameScreen.lineXVals[xTileIndex] && _player.x < GameScreen.lineXVals[xTileIndex + tileWidth]
+                        || bound && _player.y == GameScreen.lineYVals[0])//bound
                     {
                         edge = true;
                     }

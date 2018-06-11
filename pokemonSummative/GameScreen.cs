@@ -18,18 +18,31 @@ namespace pokemonSummative
             InitializeComponent();
         }
 
-        bool leftDown, rightDown, upDown, downDown, move, checkBound = true;
+        bool leftDown, rightDown, upDown, downDown, move, checkBound = true, newGame = true;       
         public static int screenX = 5, screenY = 5, tileSize, moveSpeed = 2;
-        string direction, gameRegion = "Lab";
+        public static string direction, gameRegionName = "playerRoom", faceDirection = "Down";
+
+        public static Dictionary<string, Size> gameRegions = new Dictionary<string, Size>();
 
         public static List<int> lineXVals = new List<int>();
         public static List<int> lineYVals = new List<int>();
+        List<string> areaTrackList = new List<string>();
+        List<Character> npc = new List<Character>();
 
         Character player;
         List<Boundary> boundaries = new List<Boundary>();
 
         private void GameScreen_Load(object sender, EventArgs e)
         {
+            gameRegions.Add("playerRoom", new Size(8, 8));
+            gameRegions.Add("playerHouse", new Size(8, 8));
+            gameRegions.Add("rivalHouse", new Size(8, 8));
+            gameRegions.Add("Lab", new Size(10, 12));
+            gameRegions.Add("Outside", new Size(18, 17));
+
+            areaTrackList.Add("playerRoom");
+            areaTrackList.Add("playerRoom");
+
             tileSize = (this.Width - 10)/10;
 
             for (int i = 0; i < 11; i++)
@@ -46,7 +59,6 @@ namespace pokemonSummative
             player = new Character(playerX, playerY, playerSize);
 
             LoadRoom();
-
             Refresh();
         }
 
@@ -75,23 +87,67 @@ namespace pokemonSummative
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
-            for (int i = 0; i < 11; i++)
+            for (int i = 0; i <= gameRegions[gameRegionName].Width; i++)
             {
                 lineXVals[i] = screenX + tileSize * i;               
-                e.Graphics.DrawLine(Pens.Red, new Point(lineXVals[i], screenY), new Point(lineXVals[i], screenY + tileSize*9));//verticle
-                if (i != 10)
-                {
-                    lineYVals[i] = screenY + tileSize * i;
-                    e.Graphics.DrawLine(Pens.Red, new Point(screenX, lineYVals[i]), new Point(screenX + tileSize*10, lineYVals[i]));//horizontal
-                }
+                e.Graphics.DrawLine(Pens.Red, new Point(lineXVals[i], screenY), new Point(lineXVals[i], screenY + tileSize* gameRegions[gameRegionName].Height));//verticle
+            }
+            for (int i = 0; i <= gameRegions[gameRegionName].Height; i++)
+            {
+                lineYVals[i] = screenY + tileSize * i;
+                e.Graphics.DrawLine(Pens.Red, new Point(screenX, lineYVals[i]), new Point(screenX + tileSize * gameRegions[gameRegionName].Width, lineYVals[i]));//horizontal
             }
 
             e.Graphics.FillRectangle(Brushes.Green, player.x, player.y, player.size, player.size);
 
+            switch (faceDirection)
+            {
+                case "Right":
+                    e.Graphics.FillRectangle(Brushes.Orange, player.x+5, player.y + player.size/2 - 3, 6, 6);
+                    break;
+                case "Left":
+                    e.Graphics.FillRectangle(Brushes.Orange, player.x + player.size - 11, player.y + player.size/2 - 3, 6, 6);
+                    break;
+                case "Down":
+                    e.Graphics.FillRectangle(Brushes.Orange, player.x + player.size/2 - 3, player.y +5 , 6, 6);
+                    break;
+                case "Up":
+                    e.Graphics.FillRectangle(Brushes.Orange, player.x + player.size / 2 - 3, player.y + player.size - 11, 6, 6);
+                    break;
+            }
+
             foreach(Boundary b in boundaries)
             {
-                e.Graphics.DrawRectangle(Pens.Blue, lineXVals[b.xTileIndex], lineYVals[b.yTileIndex],
-                tileSize * b.tileWidth, tileSize * b.tileHeight);
+                if (b.message == "Exit")
+                {
+                    e.Graphics.DrawRectangle(Pens.Purple, lineXVals[b.xTileIndex], lineYVals[b.yTileIndex],
+                    tileSize * b.tileWidth, tileSize * b.tileHeight);
+                }
+                else
+                {
+                    e.Graphics.DrawRectangle(Pens.Blue, lineXVals[b.xTileIndex], lineYVals[b.yTileIndex],
+                    tileSize * b.tileWidth, tileSize * b.tileHeight);
+                }
+            }
+            foreach(Character c in npc)
+            {
+                e.Graphics.DrawRectangle(Pens.Yellow, lineXVals[c.xTileIndex], lineYVals[c.yTileIndex], tileSize, tileSize);
+
+                switch (c.faceDirection)
+                {
+                    case "Right":
+                        e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + 5, lineYVals[c.yTileIndex] + tileSize / 2 - 3, 6, 6);
+                        break;
+                    case "Left":
+                        e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + tileSize - 11, lineYVals[c.yTileIndex] + c.size / 2 - 3, 6, 6);
+                        break;
+                    case "Down":
+                        e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + tileSize / 2 - 3, lineYVals[c.yTileIndex] + 5, 6, 6);
+                        break;
+                    case "Up":
+                        e.Graphics.FillRectangle(Brushes.Orange, lineXVals[c.xTileIndex] + tileSize / 2 - 3, lineYVals[c.yTileIndex] + tileSize - 11, 6, 6);
+                        break;
+                }
             }
         }
 
@@ -102,44 +158,127 @@ namespace pokemonSummative
             if (leftDown)
             {
                 direction = "Left";
+                faceDirection = "Left";
             }
             else if (rightDown)
             {
                 direction = "Right";
+                faceDirection = "Right";
             }
             else if (upDown)
             {
                 direction = "Up";
+                faceDirection = "Up";
             }
             else if (downDown)
             {
                 direction = "Down";
+                faceDirection = "Down";
             }
             else
             {
                 direction = "none";
             }
-            
-            foreach(Boundary b in boundaries)
+
+            foreach (Boundary b in boundaries)
             {
-                if (b.Intersect(player, direction, checkBound))
+                if (b.message != "Exit")
+                {
+                    if (b.Intersect(player, direction, checkBound))
+                    {
+                        move = false;
+                        break;
+                    }
+                    if (checkBound)
+                    {
+                        checkBound = false;
+                    }
+                }
+            }
+            checkBound = true;
+
+            foreach(Character c in npc)
+            {
+                if(c.IntersectNPC(player, direction))
                 {
                     move = false;
-                    checkBound = true;
                     break;
-                }
-                if(checkBound)
-                {
-                    checkBound = false;
                 }
             }
 
             if (move)
             {
                 player.Move(direction, moveSpeed);
+                UpdateCharacters();
                 UpdateBoundaries();
             }
+            if (player.CheckExit(boundaries))
+            {
+                if (gameRegionName == "playerRoom" && faceDirection == "Left" ||
+                    gameRegionName == "playerRoom" && faceDirection == "Down")
+                {
+                    gameRegionName = "playerHouse";
+                    faceDirection = "Up";
+                    areaTrackList.Add("playerHouse");
+                    LoadRoom();
+                }
+                else if (gameRegionName == "playerHouse")
+                {
+                    if (player.x == lineXVals[7] && faceDirection == "Down" ||
+                        player.x == lineXVals[7] && faceDirection == "Left")
+                    {
+                        gameRegionName = "playerRoom";
+                        faceDirection = "Up";
+                        areaTrackList.Add("playerRoom");
+                        LoadRoom();
+                    }
+                    else if (player.x != lineXVals[7] && faceDirection == "Up")
+                    {
+                        gameRegionName = "Outside";
+                        faceDirection = "Up";
+                        areaTrackList.Add("Outside");
+                        LoadRoom();
+                    }
+                }
+                else if (gameRegionName == "Outside")
+                {
+                    if (player.x == lineXVals[4] && faceDirection == "Down")
+                    {
+                        gameRegionName = "playerHouse";
+                        faceDirection = "Down";
+                        areaTrackList.Add("playerHouse");
+                    }
+                    else if (player.x == lineXVals[11])
+                    {
+                        gameRegionName = "Lab";
+                        faceDirection = "Down";
+                        areaTrackList.Add("Lab");
+                    }
+                    else if (player.x == lineXVals[12])
+                    {
+                        gameRegionName = "rivalHouse";
+                        faceDirection = "Down";
+                        areaTrackList.Add("rivalHouse");
+                    }
+                    LoadRoom();
+                }
+                else if (gameRegionName == "rivalHouse" && faceDirection == "Up")
+                {
+                    gameRegionName = "Outside";
+                    faceDirection = "Up";
+                    areaTrackList.Add("Ouside");
+                    LoadRoom();
+                }
+                else if (gameRegionName == "Lab" && faceDirection == "Up")
+                {
+                    gameRegionName = "Outside";
+                    faceDirection = "Up";
+                    areaTrackList.Add("Outside");
 
+                    LoadRoom();
+                }
+            }
+           
             Refresh();
         }
      
@@ -151,48 +290,239 @@ namespace pokemonSummative
             }
         }
 
+        public void UpdateCharacters()
+        {
+            foreach (Character c in npc)
+            {
+                c.MoveNPC(direction, moveSpeed);
+            }
+        }
+
         public void LoadRoom()
         {
             boundaries.Clear();
-            switch (gameRegion)
+            npc.Clear();
+
+            if (newGame)
             {
-                case "playerRoom":
-                    boundaries.Add(new Boundary(0, 0, 8, 8));//Boarder
-                    boundaries.Add(new Boundary(0, 0, 8, 1));//wall
-                    boundaries.Add(new Boundary(3, 4, 1, 1));//tv
-                    boundaries.Add(new Boundary(3, 5, 1, 1));//snes
-                    boundaries.Add(new Boundary(0, 6, 1, 2));//bed
-                    boundaries.Add(new Boundary(6, 6, 1, 2));//plant
-                    boundaries.Add(new Boundary(0, 1, 3, 1));//computer/desk
-                    break;
-                case "playerHouse":
-                    boundaries.Add(new Boundary(2, 0, 8, 8));//Boarder
-                    boundaries.Add(new Boundary(2, 0, 8, 1));//wall
-                    boundaries.Add(new Boundary(2, 1, 2, 1));//books
-                    boundaries.Add(new Boundary(5, 1, 1, 1));//tv
-                    boundaries.Add(new Boundary(5, 4, 2, 2));//table
-                    break;
-                case "rivalHouse":
-                    boundaries.Add(new Boundary(2, 0, 8, 8));//Boarder
-                    boundaries.Add(new Boundary(2, 0, 8, 1));//wall
-                    boundaries.Add(new Boundary(2, 1, 2, 1));//books
-                    boundaries.Add(new Boundary(9, 1, 1, 1));//books
-                    boundaries.Add(new Boundary(5, 3, 2, 2));//table
-                    boundaries.Add(new Boundary(2, 6, 1, 2));//plant
-                    boundaries.Add(new Boundary(9, 6, 1, 2));//plant
-                    break;
-                case "Outside":
-                    break;
-                case "Lab":
-                    boundaries.Add(new Boundary(0, 0, 10, 12));//Boarder
-                    boundaries.Add(new Boundary(0, 0, 10, 1));//wall
-                    boundaries.Add(new Boundary(0, 1, 4, 1));//tables
-                    boundaries.Add(new Boundary(6, 1, 4, 1));//books
-                    boundaries.Add(new Boundary(6, 3, 3, 1));//tabl
-                    boundaries.Add(new Boundary(0, 6, 4, 2));//books
-                    boundaries.Add(new Boundary(6, 6, 4, 2));//wall
-                    break;
+                screenY -= tileSize * 2;
+                screenX += tileSize;
+
+                boundaries.Add(new Boundary(0, 0, 8, 8, "b"));//Boarder
+                boundaries.Add(new Boundary(0, 0, 8, 1, "b"));//wall
+                boundaries.Add(new Boundary(3, 4, 1, 1, "b"));//tv
+                boundaries.Add(new Boundary(3, 5, 1, 1, Form1.playerName + " is playing the SNES!...Okay!It's time to go!"));//snes
+                boundaries.Add(new Boundary(0, 6, 1, 2, "b"));//bed
+                boundaries.Add(new Boundary(6, 6, 1, 2, "b"));//plant
+                boundaries.Add(new Boundary(0, 1, 3, 1, "b"));//computer/desk
+                boundaries.Add(new Boundary(7, 1, 1, 1, "Exit"));//exit to house
+
+                Refresh();
+                newGame = false;
             }
+            else
+            {
+                switch (gameRegionName)
+                {
+                    case "playerRoom":
+                        boundaries.Add(new Boundary(0, 0, 8, 8, "b"));//Boarder
+                        boundaries.Add(new Boundary(0, 0, 8, 1, "b"));//wall
+                        boundaries.Add(new Boundary(3, 4, 1, 1, "b"));//tv
+                        boundaries.Add(new Boundary(3, 5, 1, 1, Form1.playerName + " is playing the SNES!...Okay!It's time to go!"));//snes
+                        boundaries.Add(new Boundary(0, 6, 1, 2, "b"));//bed
+                        boundaries.Add(new Boundary(6, 6, 1, 2, "b"));//plant
+                        boundaries.Add(new Boundary(0, 1, 3, 1, "b"));//computer/desk
+                        boundaries.Add(new Boundary(7, 1, 1, 1, "Exit"));//exit  to house
+
+                        lineXVals.Clear();
+                        lineYVals.Clear();
+                        screenX = 5;
+                        screenY = 5;
+
+                        screenY += tileSize * 3;
+                        screenX -= tileSize * 3;
+
+                        for (int i = 0; i < 11; i++)
+                        {
+                            lineXVals.Add(screenX + tileSize * i);
+                            if (i != 10)
+                                lineYVals.Add(screenY + tileSize * i);
+                        }
+                        Refresh();
+                        break;
+                    case "playerHouse":
+                        boundaries.Add(new Boundary(0, 0, 8, 8, "b"));//Boarder
+                        boundaries.Add(new Boundary(0, 0, 8, 1, "b"));//wall
+                        boundaries.Add(new Boundary(0, 1, 2, 1, "Crammed full of POKéMON books!"));//books
+                        boundaries.Add(new Boundary(3, 1, 1, 1, "There's a movie on TV. Four boys are walking on railroad tracks. I better go too./Oops, wrong side."));//tv
+                        boundaries.Add(new Boundary(3, 4, 2, 2, "b"));//table
+                        boundaries.Add(new Boundary(2, 7, 2, 1, "Exit"));//exit to outside
+                        boundaries.Add(new Boundary(7, 1, 1, 1, "Exit"));//exit to room
+
+                        npc.Clear();
+                        lineXVals.Clear();
+                        lineYVals.Clear();
+                        screenX = 5;
+                        screenY = 5;
+
+                        if (areaTrackList[areaTrackList.Count - 2] == "playerRoom")
+                        {
+                            screenY += tileSize * 3;
+                            screenX -= tileSize * 3;
+                        }
+                        else
+                        {
+                            screenY -= tileSize * 3;
+                            screenX += tileSize * 2;
+                        }
+
+                        for (int i = 0; i < 11; i++)
+                        {
+                            lineXVals.Add(screenX + tileSize * i);
+                            if (i != 10)
+                                lineYVals.Add(screenY + tileSize * i);
+                        }
+
+                        npc.Add(new Character(lineXVals[5], lineYVals[4], tileSize));
+                        npc[0].xTileIndex = 5;
+                        npc[0].yTileIndex = 4;
+                        npc[0].faceDirection = "Right";
+                       //npc[0].message = ""
+
+                       Refresh();
+                        break;
+                    case "rivalHouse":
+                        boundaries.Add(new Boundary(0, 0, 8, 8, "b"));//Boarder
+                        boundaries.Add(new Boundary(0, 0, 8, 1, "b"));//wall
+                        boundaries.Add(new Boundary(0, 1, 2, 1, "b"));//books
+                        boundaries.Add(new Boundary(7, 1, 1, 1, "b"));//books
+                        boundaries.Add(new Boundary(3, 3, 2, 2, "b"));//table
+                        boundaries.Add(new Boundary(0, 6, 1, 2, "b"));//plant
+                        boundaries.Add(new Boundary(7, 6, 1, 2, "b"));//plant
+
+                        boundaries.Add(new Boundary(2, 7, 2, 1, "Exit"));//exit
+
+                        lineXVals.Clear();
+                        lineYVals.Clear();
+                        screenX = 5;
+                        screenY = 5;
+
+                        screenY -= tileSize * 3;
+                        screenX += tileSize * 2;
+
+                        for (int i = 0; i < 11; i++)
+                        {
+                            lineXVals.Add(screenX + tileSize * i);
+                            if (i != 10)
+                                lineYVals.Add(screenY + tileSize * i);
+                        }
+
+                        Refresh();
+                        break;
+                    case "Outside":
+                        boundaries.Add(new Boundary(0, 0, 18, 17, "b"));//Boarder
+                        boundaries.Add(new Boundary(0, 0, 9, 1, "b"));//top Boarder
+                        boundaries.Add(new Boundary(9, 0, 2, 1, "Exit"));//grass
+                        boundaries.Add(new Boundary(11, 0, 7, 1, "b"));//top Boarder
+
+                        boundaries.Add(new Boundary(3, 2, 4, 2, "b"));//Red House
+                        boundaries.Add(new Boundary(3, 4, 1, 1, "b"));//Red House
+                        boundaries.Add(new Boundary(5, 4, 2, 1, "b"));//Red House
+                        boundaries.Add(new Boundary(4, 4, 1, 1, "Exit"));//Red House door
+
+                        boundaries.Add(new Boundary(2, 4, 1, 1, Form1.playerName+ "'s house"));//Sign 
+
+                        boundaries.Add(new Boundary(11, 2, 4, 2, "b"));//Blue House
+                        boundaries.Add(new Boundary(11, 4, 1, 1, "b"));//Blue House
+                        boundaries.Add(new Boundary(13, 4, 2, 1, "b"));//Blue House
+                        boundaries.Add(new Boundary(12, 4, 1, 1, "Exit"));//Blue House door
+
+                        boundaries.Add(new Boundary(10, 4, 1, 1, Form1.rivalName+"'s house"));//Sign 
+
+                        boundaries.Add(new Boundary(3, 8, 3, 1, "b"));//fence
+                        boundaries.Add(new Boundary(6, 8, 1, 1, "PALLET TOWN Shades of your journey await!"));//sign
+
+                        boundaries.Add(new Boundary(9, 7, 6, 3, "b"));//lab
+                        boundaries.Add(new Boundary(9, 10, 2, 1, "b"));//lab
+                        boundaries.Add(new Boundary(11, 10, 1, 1, "Exit"));//lab door
+                        boundaries.Add(new Boundary(12, 10, 3, 1, "b"));//lab
+
+                        boundaries.Add(new Boundary(9, 12, 3, 1, "b"));//fence
+                        boundaries.Add(new Boundary(12, 12, 1, 1, "OAK POKéMON RESEARCH LAB"));//sign
+                        boundaries.Add(new Boundary(13, 12, 2, 1, "b"));//fence
+
+                        boundaries.Add(new Boundary(0, 16, 1, 1, "b"));//bound
+                        boundaries.Add(new Boundary(7, 16, 11, 1, "b"));//bound
+                        boundaries.Add(new Boundary(3, 13, 4, 4, "b"));//lake
+
+                        lineXVals.Clear();
+                        lineYVals.Clear();
+                        screenX = 5;
+                        screenY = 5;
+
+                        if (areaTrackList[areaTrackList.Count-2] == "playerHouse")
+                        {
+                            //screenY -= tileSize;
+                        }
+                        else if(areaTrackList[areaTrackList.Count - 2] == "rivalHouse")
+                        {
+                            screenX -= 8* tileSize;
+                        }
+                        else if (areaTrackList[areaTrackList.Count - 2] == "Lab")
+                        {
+                            screenY -= tileSize * 6;
+                            screenX -= 7 * tileSize;
+                        }
+
+                        for (int i = 0; i < 19; i++)
+                        {
+                            lineXVals.Add(screenX + tileSize * i);
+                        }
+                        for (int i = 0; i < 18; i++)
+                        {
+                            lineYVals.Add(screenY + tileSize * i);
+                        }
+                        Refresh();
+
+                        for(int i = 0; i < tileSize; i++)
+                        {
+                            screenY--;
+                            Refresh();
+                        }
+
+                        break;
+                    case "Lab":
+                        boundaries.Add(new Boundary(0, 0, 10, 12, "b"));//Boarder
+                        boundaries.Add(new Boundary(0, 0, 10, 1, "b"));//wall
+                        boundaries.Add(new Boundary(0, 1, 4, 1, "b"));//tables
+                        boundaries.Add(new Boundary(6, 1, 4, 1, "b"));//books
+                        boundaries.Add(new Boundary(6, 3, 3, 1, "b"));//table
+                        boundaries.Add(new Boundary(0, 6, 4, 2, "b"));//books
+                        boundaries.Add(new Boundary(6, 6, 4, 2, "b"));//wall
+
+                        boundaries.Add(new Boundary(4, 11, 2, 1, "Exit"));//exit
+
+                        lineXVals.Clear();
+                        lineYVals.Clear();
+                        screenX = 5;
+                        screenY = 5;
+
+                        screenY -= tileSize *7;
+
+                        for (int i = 0; i < 11; i++)
+                        {
+                            lineXVals.Add(screenX + tileSize * i);
+                        }
+                        for(int i = 0; i < 13; i++)
+                        {
+                            lineYVals.Add(screenY + tileSize * i);
+                        }
+
+                        Refresh();
+
+                        break;
+                }
+            }           
         }
 
         public void RoundTile(string direction)
@@ -211,6 +541,7 @@ namespace pokemonSummative
                         for(int i = 0; i < length; i++)
                         {
                             screenX++;
+                            UpdateCharacters();
                             UpdateBoundaries();
                             Refresh();
                         }
@@ -221,6 +552,7 @@ namespace pokemonSummative
                         for (int i = 0; i < length; i++)
                         {
                             screenX++;
+                            UpdateCharacters();
                             UpdateBoundaries();
                             Refresh();
                         }
@@ -236,6 +568,7 @@ namespace pokemonSummative
                         for (int i = 0; i < length; i++)
                         {
                             screenX--;
+                            UpdateCharacters();
                             UpdateBoundaries();
                             Refresh();
                         }
@@ -246,6 +579,7 @@ namespace pokemonSummative
                         for (int i = 0; i < length; i++)
                         {
                             screenX--;
+                            UpdateCharacters();
                             UpdateBoundaries();
                             Refresh();
                         }
@@ -261,6 +595,7 @@ namespace pokemonSummative
                         for (int i = 0; i < length; i++)
                         {
                             screenY++;
+                            UpdateCharacters();
                             UpdateBoundaries();
                             Refresh();
                         }
@@ -271,6 +606,7 @@ namespace pokemonSummative
                         for (int i = 0; i < length; i++)
                         {
                             screenY++;
+                            UpdateCharacters();
                             UpdateBoundaries();
                             Refresh();
                         }
@@ -286,6 +622,7 @@ namespace pokemonSummative
                         for (int i = 0; i < length; i++)
                         {
                             screenY--;
+                            UpdateCharacters();
                             UpdateBoundaries();
                             Refresh();
                         }
@@ -296,12 +633,63 @@ namespace pokemonSummative
                         for (int i = 0; i < length; i++)
                         {
                             screenY--;
+                            UpdateCharacters();
                             UpdateBoundaries();
                             Refresh();
                         }
                     }
                     break; 
             }          
+        }
+
+        public void CheckMessage()
+        {
+            int x = 0, y = 0;
+            string opp = "Up";
+            switch (faceDirection)
+            {
+                case "Left":
+                    x = player.x + tileSize;
+                    y = player.y;
+                    opp = "Right";
+                    break;
+                case "Right":
+                    x = player.x - tileSize;
+                    y = player.y;
+                    opp = "Left";
+                    break;
+                case "Down":
+                    x = player.x;
+                    y = player.y - tileSize;
+                    opp = "Up";
+                    break;
+                case "Up":
+                    x = player.x;
+                    y = player.y + tileSize;
+                    opp = "Down";
+                    break;
+            }
+
+            foreach (Boundary b in boundaries)
+            {
+                if (x >= lineXVals[b.xTileIndex] && x < lineXVals[b.xTileIndex] + b.tileWidth * tileSize &&
+                    y >= lineYVals[b.yTileIndex] && y <= lineYVals[b.yTileIndex] + b.tileHeight * tileSize &&
+                    b.message != "Exit" && b.message != "b")
+                {
+                    MessageBox.Show(b.message);
+                    break;
+                }
+            }
+            foreach (Character c in npc)
+            {
+                if (x >= lineXVals[c.xTileIndex] && x < lineXVals[c.xTileIndex] + tileSize &&
+                    y >= lineYVals[c.yTileIndex] && y <= lineYVals[c.yTileIndex] + tileSize)
+                {
+                    c.faceDirection = opp;
+                    MessageBox.Show(c.message);                   
+                    break;
+                }
+            }
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -319,6 +707,9 @@ namespace pokemonSummative
                     break;
                 case Keys.Down:
                     upDown = true;
+                    break;
+                case Keys.Space:
+                    CheckMessage();
                     break;
             }           
         }
