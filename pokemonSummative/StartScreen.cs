@@ -281,8 +281,8 @@ namespace pokemonSummative
                             }
                             else
                             {
-                                Form1.rivalName = "GARRY";
-                                messageLines[29] = "name is GARRY!";
+                                Form1.rivalName = "GARY";
+                                messageLines[29] = "name is GARY!";
                             }
                             break;
                         case 3:

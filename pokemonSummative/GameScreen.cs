@@ -302,6 +302,9 @@ namespace pokemonSummative
                         }
                         else
                         {
+                            gameTimer.Stop();
+                            faceDirection = "Up";
+                            MessageBox.Show("OAK: Hey! Wait! Don't go out!");
                             npc.Add(new Character(lineXVals[7], lineYVals[4], tileSize, 7, 4, "Oak", "Right"));
                             npc[npc.Count - 1].faceDirection = "Down";
 
@@ -335,9 +338,115 @@ namespace pokemonSummative
                                 Refresh();
                                 Thread.Sleep(gameTimer.Interval);
                             }
-                            //storyEvent = false;
-                            gameTimer.Stop();
-                            // Refresh();
+                            npc[npc.Count - 1].faceDirection = "Up";
+                            MessageBox.Show("OAK: It's unsafe! Wild POKeMON live in tall grass! You need your own POKeMON for your protection. I know! Here come with me.");
+
+                            for (int i = 0; i < tileSize * 5 / moveSpeed; i++)
+                            {                               
+                                player.Move("Up", moveSpeed);
+                                npc[npc.Count - 1].y = player.y+tileSize;
+                                Refresh();
+                                Thread.Sleep(gameTimer.Interval);
+                            }
+
+                            npc[npc.Count - 1].faceDirection = "Right";
+                            for (int i = 0; i < tileSize / moveSpeed; i++)
+                            {
+                                player.Move("Up", moveSpeed);
+                                npc[npc.Count - 1].y -= moveSpeed;
+                                npc[npc.Count - 1].x -=moveSpeed;
+                                Refresh();
+                                Thread.Sleep(gameTimer.Interval);
+                            }
+
+                            npc[npc.Count - 1].faceDirection = "Up";
+                            faceDirection = "Right";
+                            for (int i = 0; i < tileSize / moveSpeed; i++)
+                            {
+                                player.Move("Right", moveSpeed);
+                                npc[npc.Count - 1].y += moveSpeed;
+                                npc[npc.Count - 1].x += moveSpeed;
+                                Refresh();
+                                Thread.Sleep(gameTimer.Interval);
+                            }
+
+                            faceDirection = "Up";
+                            for (int i = 0; i < tileSize*4 / moveSpeed; i++)
+                            {
+                                player.Move("Up", moveSpeed);
+                                npc[npc.Count - 1].y = player.y + tileSize;
+                                Refresh();
+                                Thread.Sleep(gameTimer.Interval);
+                            }
+
+                            faceDirection = "Up";
+                            npc[npc.Count - 1].faceDirection = "Left";
+                            for (int i = 0; i < tileSize / moveSpeed; i++)
+                            {
+                                player.Move("Up", moveSpeed);
+                                npc[npc.Count - 1].y -= moveSpeed;
+                                npc[npc.Count - 1].x += moveSpeed;
+                                Refresh();
+                                Thread.Sleep(gameTimer.Interval);
+                            }
+
+                            faceDirection = "Left";
+                            for (int i = 0; i < tileSize*2 / moveSpeed; i++)
+                            {
+                                player.Move("Left", moveSpeed);
+                                npc[npc.Count - 1].x = player.x+player.size;
+                                Refresh();
+                                Thread.Sleep(gameTimer.Interval);
+                            }
+
+                            npc[npc.Count - 1].faceDirection = "Down";
+                            for (int i = 0; i < tileSize / moveSpeed; i++)
+                            {
+                                player.Move("Left", moveSpeed);
+                                npc[npc.Count - 1].y -= moveSpeed;
+                                npc[npc.Count - 1].x -= moveSpeed;
+                                Refresh();
+                                Thread.Sleep(gameTimer.Interval);
+                            }
+
+                            faceDirection = "Down";
+                            for (int i = 0; i < tileSize / moveSpeed; i++)
+                            {
+                                npc[npc.Count - 1].y += moveSpeed;
+                                player.Move("Down", moveSpeed);                            
+                                Refresh();
+                                Thread.Sleep(gameTimer.Interval);
+                            }
+
+                            gameRegionName = "Lab";
+                            faceDirection = "Down";
+                            areaTrackList.Add("Lab");
+                            LoadRoom();
+
+                            npc.Add(new Character(lineXVals[5], lineYVals[10], tileSize, 5, 10, "Oak", "Down"));
+                            for (int i = 0; i < tileSize *3 / moveSpeed; i++)
+                            {
+                                npc[npc.Count - 1].y -= moveSpeed;
+                                Refresh();
+                                Thread.Sleep(gameTimer.Interval);
+                            }
+
+                            npc[npc.Count - 1].y -= tileSize*5;
+                            npc[npc.Count - 1].faceDirection = "Up";
+                            Refresh();
+
+                            for (int i = 0; i < tileSize * 8 / moveSpeed; i++)
+                            {
+                                player.Move("Down", moveSpeed);
+                                npc[npc.Count - 1].y += moveSpeed;
+                                Refresh();
+                                Thread.Sleep(gameTimer.Interval);
+                            }
+
+                            MessageBox.Show("BLUE: Gramps! I'm fed up with waiting!");
+                            MessageBox.Show("OAK: BLUE? Let me think... Thats right I told you come! Just wait! Here, RED!");
+
+                            //npc[npc.Count - 1].faceDirection = "Down";
                         }
                         //LoadRoom();
                     }
@@ -594,6 +703,7 @@ namespace pokemonSummative
                         screenX = 5;
                         screenY = 5;
 
+                        screenX -= tileSize;
                         screenY -= tileSize *7;
 
                         for (int i = 0; i < 11; i++)
@@ -636,22 +746,24 @@ namespace pokemonSummative
                     if(player.x < closeX1)
                     {
                         length = player.x - lineXVals[lineXVals.IndexOf(closeX1) - 1];
-                        for(int i = 0; i < length; i++)
+                        for(int i = 0; i < length/moveSpeed; i++)
                         {
-                            screenX++;
+                            screenX+=moveSpeed;
                             UpdateCharacters();
                             UpdateBoundaries();
+                            Thread.Sleep(gameTimer.Interval);
                             Refresh();
                         }
                     }
                     else if(player.x > closeX1)
                     {
                         length = player.x - lineXVals[lineXVals.IndexOf(closeX1)];
-                        for (int i = 0; i < length; i++)
+                        for (int i = 0; i < length/moveSpeed; i++)
                         {
-                            screenX++;
+                            screenX+=moveSpeed;
                             UpdateCharacters();
                             UpdateBoundaries();
+                            Thread.Sleep(gameTimer.Interval);
                             Refresh();
                         }
                     }
@@ -663,22 +775,24 @@ namespace pokemonSummative
                     if (player.x + player.size < closeX1)
                     {
                         length = lineXVals[lineXVals.IndexOf(closeX1)] - (player.x+player.size);
-                        for (int i = 0; i < length; i++)
+                        for (int i = 0; i < length / moveSpeed; i++)
                         {
-                            screenX--;
+                            screenX-=moveSpeed;
                             UpdateCharacters();
                             UpdateBoundaries();
+                            Thread.Sleep(gameTimer.Interval);
                             Refresh();
                         }
                     }
                     else if (player.x + player.size > closeX1)
                     {
                         length = lineXVals[lineXVals.IndexOf(closeX1)] - player.x;
-                        for (int i = 0; i < length; i++)
+                        for (int i = 0; i < length / moveSpeed; i++)
                         {
-                            screenX--;
+                            screenX-=moveSpeed;
                             UpdateCharacters();
                             UpdateBoundaries();
+                            Thread.Sleep(gameTimer.Interval);
                             Refresh();
                         }
                     }
@@ -690,22 +804,24 @@ namespace pokemonSummative
                     if (player.y < closeY1)
                     {
                         length = player.y - lineYVals[lineYVals.IndexOf(closeY1) - 1];
-                        for (int i = 0; i < length; i++)
+                        for (int i = 0; i < length / moveSpeed; i++)
                         {
-                            screenY++;
+                            screenY+=moveSpeed;
                             UpdateCharacters();
                             UpdateBoundaries();
+                            Thread.Sleep(gameTimer.Interval);
                             Refresh();
                         }
                     }
                     else if (player.y > closeY1)
                     {
                         length = player.y - lineYVals[lineYVals.IndexOf(closeY1)];
-                        for (int i = 0; i < length; i++)
+                        for (int i = 0; i < length / moveSpeed; i++)
                         {
-                            screenY++;
+                            screenY+=moveSpeed;
                             UpdateCharacters();
                             UpdateBoundaries();
+                            Thread.Sleep(gameTimer.Interval);
                             Refresh();
                         }
                     }
@@ -717,22 +833,24 @@ namespace pokemonSummative
                     if (player.y + player.size < closeY1)
                     {
                         length = lineYVals[lineYVals.IndexOf(closeY1)] - (player.y + player.size);
-                        for (int i = 0; i < length; i++)
+                        for (int i = 0; i < length / moveSpeed; i++)
                         {
-                            screenY--;
+                            screenY-=moveSpeed;
                             UpdateCharacters();
                             UpdateBoundaries();
+                            Thread.Sleep(gameTimer.Interval);
                             Refresh();
                         }
                     }
                     else if (player.y + player.size > closeY1)
                     {
                         length = lineYVals[lineYVals.IndexOf(closeY1)] - player.y;
-                        for (int i = 0; i < length; i++)
+                        for (int i = 0; i < length / moveSpeed; i++)
                         {
-                            screenY--;
+                            screenY-= moveSpeed;
                             UpdateCharacters();
                             UpdateBoundaries();
+                            Thread.Sleep(gameTimer.Interval);
                             Refresh();
                         }
                     }
