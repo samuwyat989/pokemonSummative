@@ -1,6 +1,6 @@
 ﻿namespace pokemonSummative
 {
-    partial class GameScreen
+    partial class DexScreen
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,34 +29,31 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // gameTimer
+            // refreshTimer
             // 
-            this.gameTimer.Enabled = true;
-            this.gameTimer.Interval = 10;
-            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
+            this.refreshTimer.Enabled = true;
+            this.refreshTimer.Interval = 1000;
+            this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
-            // GameScreen
+            // DexScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.White;
             this.DoubleBuffered = true;
-            this.Name = "GameScreen";
+            this.Name = "DexScreen";
             this.Size = new System.Drawing.Size(800, 735);
-            this.Load += new System.EventHandler(this.GameScreen_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
-            this.Enter += new System.EventHandler(this.GameScreen_Enter);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyUp);
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.GameScreen_PreviewKeyDown);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DexScreen_Paint);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.DexScreen_PreviewKeyDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Timer refreshTimer;
     }
 }

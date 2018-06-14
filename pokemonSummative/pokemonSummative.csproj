@@ -53,6 +53,12 @@
     </Compile>
     <Compile Include="Boundary.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="DexScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DexScreen.Designer.cs">
+      <DependentUpon>DexScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </Compile>
     <EmbeddedResource Include="battleScreen.resx">
       <DependentUpon>BattleScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DexScreen.resx">
+      <DependentUpon>DexScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -189,6 +198,7 @@
     <None Include="Resources\bottomLeft.png" />
     <None Include="Resources\bottomRight.png" />
     <None Include="Resources\blueSpriteIntro.png" />
+    <None Include="Resources\dexSquare.png" />
     <Content Include="Resources\HighScores.xml" />
     <None Include="Resources\pokemonBlankBoarder.png" />
     <None Include="Resources\Pokemon GB.ttf">

@@ -19,7 +19,7 @@ namespace pokemonSummative
             InitializeComponent();
         }
 
-        bool leftDown, rightDown, upDown, downDown, move, checkBound = true, newGame = true, storyEvent, grassEvent = true;       
+        bool leftDown, rightDown, upDown, downDown, move, checkBound = true, newGame = true, storyEvent, grassEvent = true, chooseStarter;       
         public static int screenX = 5, screenY = 5, tileSize, moveSpeed = 2;
         public static string direction, gameRegionName = "playerRoom", faceDirection = "Down";
 
@@ -27,6 +27,9 @@ namespace pokemonSummative
 
         public static List<int> lineXVals = new List<int>();
         public static List<int> lineYVals = new List<int>();
+
+      
+
         List<string> areaTrackList = new List<string>();
         List<Character> npc = new List<Character>();
 
@@ -82,6 +85,11 @@ namespace pokemonSummative
             }
         }
 
+        private void GameScreen_Enter(object sender, EventArgs e)
+        {
+            gameTimer.Start();
+        }
+
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             for (int i = 0; i <= gameRegions[gameRegionName].Width; i++)
@@ -133,7 +141,6 @@ namespace pokemonSummative
                 else
                 {
                     e.Graphics.DrawRectangle(Pens.Yellow, lineXVals[c.xTileIndex], lineYVals[c.yTileIndex], tileSize, tileSize);
-                    //e.Graphics.DrawRectangle(Pens.Yellow, c.x, c.y, tileSize, tileSize);
 
                     switch (c.faceDirection)
                     {
@@ -220,6 +227,24 @@ namespace pokemonSummative
                     direction = "none";
                 }
 
+                if(chooseStarter)
+                {
+                    if(player.x == lineXVals[4] && player.y == lineYVals[6] ||
+                       player.x == lineXVals[5] && player.y == lineYVals[6])
+                    {                       
+                        gameTimer.Stop();
+                        MessageBox.Show("OAK: Hey! Don't go away yet!");
+                        faceDirection = "Down";
+                        for (int i = 0; i < tileSize / moveSpeed; i++)
+                        {
+                            player.Move("Down", moveSpeed);
+                            Refresh();
+                            Thread.Sleep(gameTimer.Interval);
+                        }
+                        gameTimer.Start();
+                    }
+                }
+
                 foreach (Boundary b in boundaries)
                 {
                     if (b.message != "Exit")
@@ -252,6 +277,7 @@ namespace pokemonSummative
                     UpdateCharacters();
                     UpdateBoundaries();
                 }
+
                 if (player.CheckExit(boundaries))
                 {
                     if (gameRegionName == "playerRoom" && faceDirection == "Left" ||
@@ -433,6 +459,7 @@ namespace pokemonSummative
 
                             npc[npc.Count - 1].y -= tileSize*5;
                             npc[npc.Count - 1].faceDirection = "Up";
+                            npc[0].faceDirection = "Down";
                             Refresh();
 
                             for (int i = 0; i < tileSize * 8 / moveSpeed; i++)
@@ -444,11 +471,22 @@ namespace pokemonSummative
                             }
 
                             MessageBox.Show("BLUE: Gramps! I'm fed up with waiting!");
-                            MessageBox.Show("OAK: BLUE? Let me think... Thats right I told you come! Just wait! Here, RED!");
+                            MessageBox.Show("OAK: BLUE? Let me think... Oh, that's right, I told you to come! Just wait! " +
+                                "Here, RED! There are 3 POKeMON here! Haha! They are inside the POKe BALLs. When I was young, " +
+                                "I was a serious POKeMON trainer! In my old age, I have only 3 left, but you can have one! Choose!");
+                            MessageBox.Show("BLUE: Hey! Gramps! What about me?");
+                            MessageBox.Show("OAK: Be patient! BLUE, you can have one too!");
 
-                            //npc[npc.Count - 1].faceDirection = "Down";
+                            npc[0].message = "BLUE: Heh, I don't need to be greedy like you! Go ahead and choose, RED!";
+                            npc[npc.Count-1].message = "OAK: Now, RED, which POKeMON do you want?";
+                            npc[npc.Count - 1].xTileIndex = 5;
+                            npc[npc.Count - 1].yTileIndex = 2;
+                            storyEvent = false;
+                            chooseStarter = true;
+                            gameTimer.Start();
+                            return;
                         }
-                        //LoadRoom();
+                        LoadRoom();
                     }
                     else if (gameRegionName == "rivalHouse" && faceDirection == "Up")
                     {
@@ -466,7 +504,6 @@ namespace pokemonSummative
                         LoadRoom();
                     }
                 }
-
                 Refresh();
             }
         }
@@ -692,7 +729,9 @@ namespace pokemonSummative
                         boundaries.Add(new Boundary(0, 0, 10, 1, "b"));//wall
                         boundaries.Add(new Boundary(0, 1, 4, 1, "b"));//tables
                         boundaries.Add(new Boundary(6, 1, 4, 1, "Crammed full of POKéMON books!"));//books
-                        boundaries.Add(new Boundary(6, 3, 3, 1, "Those are POKé BALLs. They contain POKéMON!"));//table of pokemon
+                        boundaries.Add(new Boundary(6, 3, 1, 1, "Those are POKé BALLs. They contain POKéMON!"));//table of pokemon
+                        boundaries.Add(new Boundary(7, 3, 1, 1, "Those are POKé BALLs. They contain POKéMON!"));//table of pokemon
+                        boundaries.Add(new Boundary(8, 3, 1, 1, "Those are POKé BALLs. They contain POKéMON!"));//table of pokemon
                         boundaries.Add(new Boundary(0, 6, 4, 2, "Crammed full of POKéMON books!"));//books
                         boundaries.Add(new Boundary(6, 6, 4, 2, "Crammed full of POKéMON books!"));//books
 
@@ -892,7 +931,38 @@ namespace pokemonSummative
                     y >= lineYVals[b.yTileIndex] && y <= lineYVals[b.yTileIndex] + b.tileHeight * tileSize &&
                     b.message != "Exit" && b.message != "b")
                 {
-                    MessageBox.Show(b.message);
+                    if (chooseStarter)
+                    {
+                        if (b.xTileIndex == 6 && b.yTileIndex == 3)
+                        {
+                            DexScreen.pokemon = "CHARMANDER";
+                            gameTimer.Stop();
+                            DexScreen ds = new DexScreen();
+                            this.Controls.Add(ds);
+                            ds.Focus();
+                        }
+                        else if (b.xTileIndex == 7 && b.yTileIndex == 3)
+                        {
+                            DexScreen.pokemon = "SQUIRTLE";
+                            gameTimer.Stop();
+                            DexScreen ds = new DexScreen();
+                            this.Controls.Add(ds);
+                            ds.Focus();
+                        }
+                        if (b.xTileIndex == 8 && b.yTileIndex == 3)
+                        {
+                            DexScreen.pokemon = "BULBASAUR";
+                            gameTimer.Stop();
+                            DexScreen ds = new DexScreen();
+                            this.Controls.Add(ds);
+                            ds.Focus();
+                        }
+                       // MessageBox.Show(DexScreen.pokemon);
+                    }
+                    else
+                    {
+                        MessageBox.Show(b.message);
+                    }
                     break;
                 }
             }
