@@ -48,7 +48,6 @@
             this.Size = new System.Drawing.Size(800, 735);
             this.Load += new System.EventHandler(this.GameScreen_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
-            this.Enter += new System.EventHandler(this.GameScreen_Enter);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.GameScreen_PreviewKeyDown);
             this.ResumeLayout(false);

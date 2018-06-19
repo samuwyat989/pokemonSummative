@@ -9,15 +9,15 @@ namespace pokemonSummative
     public class Boundary
     {
         public int x, y, width, height, xTileIndex, yTileIndex, tileWidth, tileHeight;
-        public string message;
+        public List<string> messages = new List<string>();
 
-        public Boundary(int _xTileIndex, int _yTileIndex, int _tileWidth, int _tileHeight, string _message)//int _x, int _y, int _width, int _height)
+        public Boundary(int _xTileIndex, int _yTileIndex, int _tileWidth, int _tileHeight)//int _x, int _y, int _width, int _height)
         {
             xTileIndex = _xTileIndex; 
             yTileIndex = _yTileIndex;
             tileWidth = _tileWidth;
             tileHeight = _tileHeight;
-            message = _message;
+            //messages.AddRange(_messages);
         }
 
         public void Move(string _direction, int _moveSpeed)

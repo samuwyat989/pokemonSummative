@@ -32,6 +32,8 @@ namespace pokemonSummative
 
             GameScreen gs = new GameScreen();
             this.Controls.Add(gs);
+            //DexScreen ds = new DexScreen();
+            //this.Controls.Add(ds);
             this.Height -= 43;
             
 

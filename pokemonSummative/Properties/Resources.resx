@@ -205,4 +205,34 @@
   <data name="dexSquare" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dexSquare.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bulbasaurDexSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bulbasaurDexSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="charmanderDexSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\charmanderDexSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="squirtleDexSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\squirtleDexSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerHouseBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerHouseBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerRoomBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerRoomBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="outsideBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outsideBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rivalHouseBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rivalHouseBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pokeBall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pokeBall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pokemonLabBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pokemonLabBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

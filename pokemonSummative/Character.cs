@@ -10,18 +10,19 @@ namespace pokemonSummative
     public class Character
     {
         public int x, y, size, xTileIndex, yTileIndex;
-        Image[] playerImages;
+        public Image[] playerImages = new Image[4];
         int imageIndex;
-        public string message, faceDirection;
+        public string faceDirection;
+        public List<string> messages = new List<string>();
 
-        public Character(int _x, int _y, int _size, int _xTile, int _yTile, string _message, string _fc)
+        public Character(int _x, int _y, int _size, int _xTile, int _yTile, string[] _messages, string _fc)
         {
             x = _x;
             y = _y;
             size = _size;
             xTileIndex = _xTile;
             yTileIndex = _yTile;
-            message = _message;
+            messages.AddRange(_messages);
             faceDirection = _fc;
         }
 
@@ -111,7 +112,7 @@ namespace pokemonSummative
             {
                 if (x >= GameScreen.lineXVals[b.xTileIndex] && x < GameScreen.lineXVals[b.xTileIndex+ b.tileWidth] &&
                     y == GameScreen.lineYVals[b.yTileIndex] &&
-                    b.message == "Exit")
+                    b.messages[0] == "Exit")
                 {
                     exit = true;
                     break;

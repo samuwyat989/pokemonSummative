@@ -179,6 +179,14 @@
     <Content Include="HighScores.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Resources\playerFront.png" />
+    <None Include="Resources\pokeBall.png" />
+    <None Include="Resources\pokemonLabBack.png" />
+    <None Include="Resources\rivalHouseBack.png" />
+    <None Include="Resources\outsideBack.png" />
+    <None Include="Resources\playerHouseBack.png" />
+    <None Include="Resources\playerRoomBack.png" />
+    <None Include="Resources\squirtleDexSprite.png" />
     <None Include="Resources\small2.png" />
     <None Include="Resources\small1.png" />
     <None Include="Resources\redSpriteIntro.png" />
@@ -199,6 +207,8 @@
     <None Include="Resources\bottomRight.png" />
     <None Include="Resources\blueSpriteIntro.png" />
     <None Include="Resources\dexSquare.png" />
+    <None Include="Resources\charmanderDexSprite.png" />
+    <None Include="Resources\bulbasaurDexSprite.png" />
     <Content Include="Resources\HighScores.xml" />
     <None Include="Resources\pokemonBlankBoarder.png" />
     <None Include="Resources\Pokemon GB.ttf">
