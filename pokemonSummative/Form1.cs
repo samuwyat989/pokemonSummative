@@ -30,17 +30,17 @@ namespace pokemonSummative
             //IntroScreen ns = new IntroScreen();
             //this.Controls.Add(ns);
 
-            GameScreen gs = new GameScreen();
-            this.Controls.Add(gs);
+            //GameScreen gs = new GameScreen();
+            //this.Controls.Add(gs);
             //DexScreen ds = new DexScreen();
             //this.Controls.Add(ds);
-            this.Height -= 43;
+            //this.Height -= 43;
 
             //BattleScreen bs = new BattleScreen();
             //this.Controls.Add(bs);
 
-            //MenuScreen ms = new MenuScreen();
-            //this.Controls.Add(ms);
+            MenuScreen ms = new MenuScreen();
+            this.Controls.Add(ms);
             //StartScreen ss = new StartScreen();
             //this.Controls.Add(ss);
             //ViewScoreScreen vs = new ViewScoreScreen();
@@ -51,7 +51,7 @@ namespace pokemonSummative
 
         public void GetScores()
         {
-            XmlReader reader = XmlReader.Create("C:/Users/sambw/source/repos/pokemonSummative/pokemonSummative/HighScores.xml");
+            XmlTextReader reader = new XmlTextReader("Resources/HighScores.xml");
 
             string newName;
             int newScore, newMin, newSec;

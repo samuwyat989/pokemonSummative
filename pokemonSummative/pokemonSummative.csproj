@@ -176,9 +176,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HighScores.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Resources\playerWalkUp.png" />
     <None Include="Resources\playerWalkRight.png" />
     <None Include="Resources\playerWalkLeft.png" />
@@ -247,7 +244,6 @@
     <None Include="Resources\boyFront.png" />
     <None Include="Resources\boyLeft.png" />
     <None Include="Resources\boyRight.png" />
-    <Content Include="Resources\HighScores.xml" />
     <None Include="Resources\pokemonBlankBoarder.png" />
     <None Include="Resources\Pokemon GB.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -278,6 +274,14 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\HighScores.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

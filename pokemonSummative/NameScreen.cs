@@ -75,8 +75,7 @@ namespace pokemonSummative
                                 break;
                             }
                         }
-
-                        XmlWriter writer = XmlWriter.Create("C:/Users/sambw/source/repos/pokemonSummative/pokemonSummative/HighScores.xml");
+                        XmlTextWriter writer = new XmlTextWriter("Resources/HighScores.xml", null);
 
                         //Write the root element 
                         writer.WriteStartElement("players");

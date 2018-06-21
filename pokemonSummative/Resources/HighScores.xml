@@ -1,33 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <players>
   <player>
-    <name>---</name>
-    <score>0</score>
-    <min>0</min>
+    <name>SAM.W</name>
+    <score>124</score>
+    <min>12</min>
     <sec>0</sec>
   </player>
   <player>
-    <name>---</name>
-    <score>0</score>
-    <min>0</min>
+    <name>Manny</name>
+    <score>82</score>
+    <min>12</min>
     <sec>0</sec>
   </player>
   <player>
-    <name>---</name>
-    <score>0</score>
-    <min>0</min>
+    <name>Manny</name>
+    <score>70</score>
+    <min>12</min>
     <sec>0</sec>
   </player>
   <player>
-    <name>---</name>
-    <score>0</score>
-    <min>0</min>
-    <sec>0</sec>
+    <name>Doyle</name>
+    <score>58</score>
+    <min>10</min>
+    <sec>22</sec>
   </player>
   <player>
-    <name>---</name>
-    <score>0</score>
-    <min>0</min>
-    <sec>0</sec>
+    <name>Reid</name>
+    <score>3</score>
+    <min>1</min>
+    <sec>50</sec>
   </player>
 </players>
