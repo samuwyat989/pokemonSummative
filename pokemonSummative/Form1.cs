@@ -27,26 +27,8 @@ namespace pokemonSummative
         public void OnStart()
         {
             GetScores();
-            //IntroScreen ns = new IntroScreen();
-            //this.Controls.Add(ns);
-
-            //GameScreen gs = new GameScreen();
-            //this.Controls.Add(gs);
-            //DexScreen ds = new DexScreen();
-            //this.Controls.Add(ds);
-            //this.Height -= 43;
-
-            //BattleScreen bs = new BattleScreen();
-            //this.Controls.Add(bs);
-
-            MenuScreen ms = new MenuScreen();
-            this.Controls.Add(ms);
-            //StartScreen ss = new StartScreen();
-            //this.Controls.Add(ss);
-            //ViewScoreScreen vs = new ViewScoreScreen();
-            //this.Controls.Add(vs);
-            //NameScreen ns = new NameScreen();
-            //this.Controls.Add(ns);
+            IntroScreen ns = new IntroScreen();
+            this.Controls.Add(ns);
         }
 
         public void GetScores()
