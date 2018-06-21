@@ -73,7 +73,7 @@ namespace pokemonSummative
         {
             char key = (char)e.KeyData;
 
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Left && endMessage != "View\nScore")
             {
                 selectIndex = 0;
             }
@@ -128,7 +128,7 @@ namespace pokemonSummative
                     inputPokemon += e.KeyCode;
                 }
 
-                //Converts to first letter to an upper and all others to lower ie. rigHt -> Right
+                //Converts the first letter to an upper and all others to lower ie. rigHt -> Right
                 inputPokemon = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(inputPokemon.ToLower());
 
                 //Checks for exception pokemon
@@ -182,7 +182,6 @@ namespace pokemonSummative
             scoreLabel.Focus();
         }
 
-
         private void dexBox4_Enter(object sender, EventArgs e)
         {
             scoreLabel.Focus();
@@ -205,7 +204,7 @@ namespace pokemonSummative
             if(secTime == 0 && minTime == 0 || progress == 151)
             {
                 gameTimer.Stop();
-                ShowMissedPokemon();
+                ShowMissedPokemon();            
                 endMessage = "View\nScore";
             }
         }
@@ -230,28 +229,6 @@ namespace pokemonSummative
             }
             e.Graphics.DrawString(inputPokemon, new Font("Pokemon GB", 12), Brushes.Black, selectPoints[0].X + 17, selectPoints[0].Y);
             scoreLabel.Focus();
-        }
-
-        private void MinigameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            
-        }
-
-        private void endButton_Click(object sender, EventArgs e)
-        {
-            //if(endButton.Text == "View Score")
-            //{
-            //    Form f = this.FindForm();
-            //    ViewScoreScreen vs = new ViewScoreScreen();
-            //    f.Controls.Remove(this);
-            //    f.Controls.Add(vs);
-            //}
-            //else
-            //{
-            //    gameTimer.Stop();
-            //    ShowMissedPokemon();
-            //    endButton.Text = "View Score";
-            //}
         }
 
         public void Reset()
@@ -281,6 +258,7 @@ namespace pokemonSummative
                 missedPokemon.Remove(allPokemon[31]);
                 progress += 2;
                 exception = true;
+                letterIndex = -1;
                 Reset();
             }
             else if (pokemon == "Mr.Mime" && GotPokemon(allPokemon[121]) == false)
@@ -290,6 +268,7 @@ namespace pokemonSummative
                 missedPokemon.Remove(allPokemon[121]);
                 progress++;
                 exception = true;
+                letterIndex = -1;
                 Reset();
             }
         }

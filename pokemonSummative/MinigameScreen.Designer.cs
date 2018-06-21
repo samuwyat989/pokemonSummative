@@ -166,7 +166,6 @@
             this.Name = "MinigameScreen";
             this.Size = new System.Drawing.Size(800, 850);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MinigameScreen_Paint);
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.MinigameScreen_PreviewKeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

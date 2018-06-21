@@ -27,6 +27,7 @@ namespace pokemonSummative
             {
                 introPlayer.Ctlcontrols.stop();
                 introPlayer.Visible = false;
+                introPlayer.Ctlenabled = false;
             }
             Refresh();
         }

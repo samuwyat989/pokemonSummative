@@ -68,6 +68,7 @@ namespace pokemonSummative
                     case 0:
                         StartScreen ss = new StartScreen();
                         f.Controls.Add(ss);
+                        f.Height -= 10;
                         break;
                     case 1:
                         MinigameScreen ms = new MinigameScreen();

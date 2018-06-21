@@ -50,20 +50,20 @@ namespace pokemonSummative
         {
             "Hello there!",
             "Welcome to the",
-            "world of POKeMON!",
+            "world of POKéMON!",
             "My name is OAK!",
             "People call me",
-            "the POKeMON PROF!", 
+            "the POKéMON PROF!", 
             "This world is",
             "inhabited by",
             "creatures called",
-            "POKeMON!",
+            "POKéMON!",
             "For some people",
-            "POKeMON are",
+            "POKéMON are",
             "pets. Others use",
             "them for fights.",
             "Myself...",
-            "I study POKeMON",
+            "I study POKéMON",
             "as a profession.", 
             "First, what is",
             "your name?",
@@ -80,11 +80,11 @@ namespace pokemonSummative
             "name is",
             "", 
             "Your very own",
-            "POKeMON legend is",
+            "POKéMON legend is",
             "about to unfold!",
             "A world of dreams",
             "and adventures",
-            "with POKeMON",
+            "with POKéMON",
             "awaits! Lets go!"
         };
 
@@ -130,7 +130,7 @@ namespace pokemonSummative
                 else
                 {
                     e.Graphics.DrawString("BLUE", new Font("Pokemon GB", 18), Brushes.Black, 50, 100);
-                    e.Graphics.DrawString("GARRY", new Font("Pokemon GB", 18), Brushes.Black, 50, 150);
+                    e.Graphics.DrawString("GARY", new Font("Pokemon GB", 18), Brushes.Black, 50, 150);
                     e.Graphics.DrawString("JOHN", new Font("Pokemon GB", 18), Brushes.Black, 50, 200);
                 }
 
@@ -325,7 +325,7 @@ namespace pokemonSummative
                         f.Controls.Remove(this);
                         GameScreen gs = new GameScreen();
                         f.Controls.Add(gs);
-                        f.Height -= 43;
+                        f.Height -= 33;
                     }
                     else if (Form1.messageIndex == 4)
                     {

@@ -10,8 +10,8 @@ namespace pokemonSummative
     public class Character
     {
         public int x, y, size, xTileIndex, yTileIndex;
-        public Image[] playerImages = new Image[4];
-        int imageIndex;
+        public Dictionary<string, Image> playerImage = new Dictionary<string, Image>();
+        public Dictionary<string, Image> walkImage = new Dictionary<string, Image>();
         public string faceDirection;
         public List<string> messages = new List<string>();
 
@@ -110,15 +110,17 @@ namespace pokemonSummative
 
             foreach(Boundary b in _boundaries)
             {
-                if (x >= GameScreen.lineXVals[b.xTileIndex] && x < GameScreen.lineXVals[b.xTileIndex+ b.tileWidth] &&
-                    y == GameScreen.lineYVals[b.yTileIndex] &&
-                    b.messages[0] == "Exit")
+                if (b.messages.Count == 1)
                 {
-                    exit = true;
-                    break;
+                    if (x >= GameScreen.lineXVals[b.xTileIndex] && x < GameScreen.lineXVals[b.xTileIndex + b.tileWidth] &&
+                        y == GameScreen.lineYVals[b.yTileIndex] &&
+                        b.messages[0] == "Exit")
+                    {
+                        exit = true;
+                        break;
+                    }
                 }
             }
-
             return exit;
         }
     }

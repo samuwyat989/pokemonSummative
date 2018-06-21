@@ -226,13 +226,109 @@
   <data name="rivalHouseBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rivalHouseBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="playerFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\playerFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pokeBall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pokeBall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="pokemonLabBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pokemonLabBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newPokeBall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newPokeBall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerBattleSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerBattleSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tranPoke" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tranPoke.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boyFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boyFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boyLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boyLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boyRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boyRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="girlBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\girlBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="girlFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\girlFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="girlLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\girlLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="girlRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\girlRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="momBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\momBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="momFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\momFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="momLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\momLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="momRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\momRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="oakBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\oakBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="oakFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\oakFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="oakLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\oakLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="oakRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\oakRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerBackTran" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerBackTran.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerFrontTran" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerFrontTran.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerLeftTran" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerLeftTran.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerRightTran" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerRightTran.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerWalkDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerWalkDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerWalkLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerWalkLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerWalkRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerWalkRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playerWalkUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerWalkUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rivalBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rivalBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rivalFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rivalFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rivalLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rivalLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rivalRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rivalRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scientistBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scientistBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scientistFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scientistFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scientistLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scientistLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scientistRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scientistRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

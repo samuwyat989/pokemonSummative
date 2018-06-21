@@ -35,7 +35,9 @@ namespace pokemonSummative
             //DexScreen ds = new DexScreen();
             //this.Controls.Add(ds);
             this.Height -= 43;
-            
+
+            //BattleScreen bs = new BattleScreen();
+            //this.Controls.Add(bs);
 
             //MenuScreen ms = new MenuScreen();
             //this.Controls.Add(ms);

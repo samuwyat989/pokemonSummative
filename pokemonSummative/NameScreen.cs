@@ -41,7 +41,7 @@ namespace pokemonSummative
         {
             if (e.KeyCode == Keys.Space)
             {
-                if (currentStringIndex == 44)
+                if (currentStringIndex == 44)//enter name position
                 {
                     if (Form1.top5Name && name != "")
                     {

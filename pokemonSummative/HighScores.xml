@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <players>
   <player>
+    <name>SAM.W</name>
+    <score>124</score>
+    <min>12</min>
+    <sec>0</sec>
+  </player>
+  <player>
     <name>Manny</name>
     <score>82</score>
     <min>12</min>
@@ -23,11 +29,5 @@
     <score>18</score>
     <min>1</min>
     <sec>50</sec>
-  </player>
-  <player>
-    <name>SAHIL</name>
-    <score>3</score>
-    <min>0</min>
-    <sec>15</sec>
   </player>
 </players>

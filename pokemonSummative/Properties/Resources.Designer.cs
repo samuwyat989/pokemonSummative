@@ -93,6 +93,36 @@ namespace pokemonSummative.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap boyFront {
+            get {
+                object obj = ResourceManager.GetObject("boyFront", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap boyLeft {
+            get {
+                object obj = ResourceManager.GetObject("boyLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap boyRight {
+            get {
+                object obj = ResourceManager.GetObject("boyRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bulbasaurDexSprite {
             get {
                 object obj = ResourceManager.GetObject("bulbasaurDexSprite", resourceCulture);
@@ -141,8 +171,54 @@ namespace pokemonSummative.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap girlBack {
+            get {
+                object obj = ResourceManager.GetObject("girlBack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap girlFront {
+            get {
+                object obj = ResourceManager.GetObject("girlFront", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap girlLeft {
+            get {
+                object obj = ResourceManager.GetObject("girlLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap girlRight {
+            get {
+                object obj = ResourceManager.GetObject("girlRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;players&gt;
+        ///  &lt;player&gt;
+        ///    &lt;name&gt;SAM.W&lt;/name&gt;
+        ///    &lt;score&gt;124&lt;/score&gt;
+        ///    &lt;min&gt;12&lt;/min&gt;
+        ///    &lt;sec&gt;0&lt;/sec&gt;
+        ///  &lt;/player&gt;
         ///  &lt;player&gt;
         ///    &lt;name&gt;Manny&lt;/name&gt;
         ///    &lt;score&gt;82&lt;/score&gt;
@@ -162,13 +238,7 @@ namespace pokemonSummative.Properties {
         ///    &lt;sec&gt;22&lt;/sec&gt;
         ///  &lt;/player&gt;
         ///  &lt;player&gt;
-        ///    &lt;name&gt;Reid&lt;/name&gt;
-        ///    &lt;score&gt;18&lt;/score&gt;
-        ///    &lt;min&gt;1&lt;/min&gt;
-        ///    &lt;sec&gt;50&lt;/sec&gt;
-        ///  &lt;/player&gt;
-        ///  &lt;player&gt;
-        ///    &lt;name&gt;SAH [rest of string was truncated]&quot;;.
+        ///    &lt;name&gt;R [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HighScores {
             get {
@@ -229,6 +299,56 @@ namespace pokemonSummative.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap momBack {
+            get {
+                object obj = ResourceManager.GetObject("momBack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap momFront {
+            get {
+                object obj = ResourceManager.GetObject("momFront", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap momLeft {
+            get {
+                object obj = ResourceManager.GetObject("momLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap momRight {
+            get {
+                object obj = ResourceManager.GetObject("momRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newPokeBall {
+            get {
+                object obj = ResourceManager.GetObject("newPokeBall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap nextTextPokemon {
             get {
                 object obj = ResourceManager.GetObject("nextTextPokemon", resourceCulture);
@@ -249,9 +369,49 @@ namespace pokemonSummative.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap oakBack {
+            get {
+                object obj = ResourceManager.GetObject("oakBack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap oakFront {
+            get {
+                object obj = ResourceManager.GetObject("oakFront", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap oakIntroImage {
             get {
                 object obj = ResourceManager.GetObject("oakIntroImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap oakLeft {
+            get {
+                object obj = ResourceManager.GetObject("oakLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap oakRight {
+            get {
+                object obj = ResourceManager.GetObject("oakRight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -279,9 +439,29 @@ namespace pokemonSummative.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap playerFront {
+        internal static System.Drawing.Bitmap playerBackTran {
             get {
-                object obj = ResourceManager.GetObject("playerFront", resourceCulture);
+                object obj = ResourceManager.GetObject("playerBackTran", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap playerBattleSprite {
+            get {
+                object obj = ResourceManager.GetObject("playerBattleSprite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap playerFrontTran {
+            get {
+                object obj = ResourceManager.GetObject("playerFrontTran", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -299,6 +479,26 @@ namespace pokemonSummative.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap playerLeftTran {
+            get {
+                object obj = ResourceManager.GetObject("playerLeftTran", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap playerRightTran {
+            get {
+                object obj = ResourceManager.GetObject("playerRightTran", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap playerRoomBack {
             get {
                 object obj = ResourceManager.GetObject("playerRoomBack", resourceCulture);
@@ -309,9 +509,39 @@ namespace pokemonSummative.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pokeBall {
+        internal static System.Drawing.Bitmap playerWalkDown {
             get {
-                object obj = ResourceManager.GetObject("pokeBall", resourceCulture);
+                object obj = ResourceManager.GetObject("playerWalkDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap playerWalkLeft {
+            get {
+                object obj = ResourceManager.GetObject("playerWalkLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap playerWalkRight {
+            get {
+                object obj = ResourceManager.GetObject("playerWalkRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap playerWalkUp {
+            get {
+                object obj = ResourceManager.GetObject("playerWalkUp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -419,9 +649,89 @@ namespace pokemonSummative.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap rivalBack {
+            get {
+                object obj = ResourceManager.GetObject("rivalBack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rivalFront {
+            get {
+                object obj = ResourceManager.GetObject("rivalFront", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rivalHouseBack {
             get {
                 object obj = ResourceManager.GetObject("rivalHouseBack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rivalLeft {
+            get {
+                object obj = ResourceManager.GetObject("rivalLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rivalRight {
+            get {
+                object obj = ResourceManager.GetObject("rivalRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scientistBack {
+            get {
+                object obj = ResourceManager.GetObject("scientistBack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scientistFront {
+            get {
+                object obj = ResourceManager.GetObject("scientistFront", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scientistLeft {
+            get {
+                object obj = ResourceManager.GetObject("scientistLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scientistRight {
+            get {
+                object obj = ResourceManager.GetObject("scientistRight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -462,6 +772,16 @@ namespace pokemonSummative.Properties {
         internal static System.Drawing.Bitmap topRight {
             get {
                 object obj = ResourceManager.GetObject("topRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tranPoke {
+            get {
+                object obj = ResourceManager.GetObject("tranPoke", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

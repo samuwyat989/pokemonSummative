@@ -58,7 +58,7 @@ namespace pokemonSummative
             {
                 if (sceneCounter == 3)
                 {
-                    GameScreen.gotStarter = true;
+                    GameScreen.pickStarter = true;
                     GameScreen.publicTimer.Start();
                     this.Parent.Controls.Remove(this);
                 }
